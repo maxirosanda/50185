@@ -7,8 +7,8 @@ import { useEffect, useState } from 'react'
 import { colors } from '../Global/colors'
 
 
-const ItemListCategories = ({category ,setCategorySelected,setProductDetailId}) => {
-
+const ItemListCategories = ({navigation,route}) => {
+  const {category} = route.params
   const [keyword,setKeyword] = useState("")
   const [products,setProducts] = useState(allProducts)
 
@@ -28,16 +28,12 @@ const ItemListCategories = ({category ,setCategorySelected,setProductDetailId}) 
 
   return (
     <>
-      <Header/>
       <Search setKeyword={setKeyword}/>
-      <Pressable style={styles.goBack} title='Go back' onPress={()=>setCategorySelected("")}>
-        <Text>Volver</Text>
-      </Pressable>
       <FlatList
         style={styles.container}
         data={products}
         keyExtractor={item => item.id}
-        renderItem={({item})=> <ProductItem item={item} setProductDetailId={setProductDetailId}/>}
+        renderItem={({item})=> <ProductItem item={item} navigation={navigation} route={route} />}
       />
     </>
   )

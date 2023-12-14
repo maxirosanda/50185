@@ -3,12 +3,12 @@ import { colors } from '../Global/colors'
 import { useEffect } from 'react'
 
 
-const ProductItem = ({item , setProductDetailId }) => {
+const ProductItem = ({item ,navigation,route }) => {
 
   const {width} = useWindowDimensions()
 
   return (
-    <Pressable style={styles.container} onPress={()=> setProductDetailId(item.id)} >
+    <Pressable style={styles.container}  onPress={()=>navigation.navigate("Product",{id:item.id})} >
       <Text style={width > 350 ? styles.text : styles.textMin}>{item.title}</Text>
       <Image
             style={styles.image}
