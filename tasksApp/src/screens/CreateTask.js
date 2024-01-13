@@ -1,10 +1,20 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { Button, StyleSheet, Text, TextInput, View } from 'react-native'
+import React, { useState } from 'react'
+import { usePostTasksMutation } from '../app/services/tasks'
 
-const CreateTask = () => {
+const CreateTask = ({navigation}) => {
+  const [title,setTitle] = useState("")
+  const [triggerPostTask] = usePostTasksMutation()
+
   return (
     <View>
       <Text>CreateTask</Text>
+      <TextInput value={title} onChangeText={(t)=>setTitle(t)} placeholder='Titulo' />
+      <Button title='Crear Tarea' onPress={()=> {
+        triggerPostTask({title})
+        setTitle("")
+        navigation.navigate("TasksStack")
+      } }/>
     </View>
   )
 }
