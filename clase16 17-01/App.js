@@ -6,8 +6,11 @@ import { store } from './src/app/store'
 import { Provider } from 'react-redux'
 import MainNavigator from './src/navigation/MainNavigator'
 import LocationSelector from './src/Screens/LocationSelector'
+import { init } from './src/database'
 
-
+init()
+.then(() => console.log("DB Initialized"))
+.catch(err => console.log(err))
 
 const  App = () => {
 
