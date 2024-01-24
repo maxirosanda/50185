@@ -7,6 +7,7 @@ import { useSignupMutation } from '../app/services/auth'
 import { useDispatch } from 'react-redux'
 import { setUser } from '../features/auth/authSlice'
 import { signupSchema } from '../validations/signupSchema'
+import { insertSession } from '../database'
 
 const Signup = ({navigation}) => {
   const dispatch = useDispatch()
@@ -17,6 +18,7 @@ const Signup = ({navigation}) => {
   const [emailError,setEmailError] = useState("")
   const [passwordError,setPasswordError] = useState("")
   const [confirmPasswordError,setConfirmPasswordError] = useState("")
+  
 
   useEffect(()=>{
     if(isSuccess) {
