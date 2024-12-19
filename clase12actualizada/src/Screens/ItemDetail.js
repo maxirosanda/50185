@@ -4,13 +4,22 @@ import { colors } from '../Global/colors'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { addItem } from '../features/cart/cartSlice'
+import { useGetProductQuery } from '../app/services/shopServices'
 
 const ItemDetail = ({route}) => {
-  const dispatch = useDispatch()
-  const product = useSelector((state)=> state.shop.value.productSelected)
-  const images = product.images ? product.images : []
 
+    const {id} = route.params
+    const {data:product,isLoading,error} = useGetProductQuery(id)
+    const images = product?.images ? product?.images : []
+    const dispatch = useDispatch()
+    
+    useEffect(()=>{
+      if(!isLoading){
+        console.log(product)
+      }
+    },[isLoading])
 
+    if(isLoading) return null
 
   return (
     <View style={styles.container}>

@@ -1,0 +1,1 @@
+export const base_url = "https://cursodesarrolloweb-a09ad-default-rtdb.firebaseio.com/"
